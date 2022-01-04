@@ -1,5 +1,7 @@
 package _00_Intro_to_Exceptions;
 
+import javax.swing.JOptionPane;
+
 public class ExceptionsDemo {
 
     /*
@@ -18,6 +20,12 @@ public class ExceptionsDemo {
             // This is where the Exception is actually thrown.
             throw new Exception();
         }
+    }
+    
+    public static void testPositive(int x) throws NegativeNumberException{
+    	if(x < 0) {
+    		throw new NegativeNumberException();
+    	}
     }
 
     /*
@@ -39,6 +47,25 @@ public class ExceptionsDemo {
     public static void main(String[] args) {
 
         // 1. Create a try/catch block (Hint: type "try" and ctrl + space).
+//    	try {
+//			testFiveOrGreater(3);
+//		} catch (Exception e) {
+//			// TODO: handle exception
+//			e.printStackTrace();
+//		}
+    	
+    	try {
+			testPositive(-1);
+			testFiveOrGreater(3);
+		} catch (NegativeNumberException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			e.scaryPopUp();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			JOptionPane.showMessageDialog(null, "Your computer is OK!");
+		}
 
         /*
          * 2. Call the testFiveOrGreater method with a value less than 5 inside
