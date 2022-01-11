@@ -46,7 +46,42 @@ public abstract class AbstractClassDemo {
 
 }
 
+class runner extends AbstractClassDemo implements InterfaceDemo, DemoInterface{
+
+	@Override
+	public void abstractDemo() {
+		// TODO Auto-generated method stub
+		System.out.println("Abstract Demo");
+	}
+
+	@Override
+	public int abstractNumDemo() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public String faceDemo() {
+		// TODO Auto-generated method stub
+		return "demo";
+	}
+
+	@Override
+	public double interDemo() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
+	
+	
+	
+	
+	
+	
+}
+
 /*
  * 1. Create a class that extends the AbstractClassDemo class and implement its
  * methods.
  */
+

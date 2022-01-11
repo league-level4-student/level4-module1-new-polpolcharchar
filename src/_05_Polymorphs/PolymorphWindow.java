@@ -5,6 +5,9 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -59,8 +62,12 @@ public class PolymorphWindow extends JPanel implements ActionListener {
 
     private JFrame window;
     private Timer timer;
+    
+    ArrayList<Polymorph> poly;
 
-    Polymorph bluePoly;
+    //Polymorph bluePoly;
+    //Polymorph redPoly;
+    //Polymorph movingPoly;
 
     public static void main(String[] args) {
         new PolymorphWindow().buildWindow();
@@ -73,8 +80,20 @@ public class PolymorphWindow extends JPanel implements ActionListener {
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.pack();
         window.setVisible(true);
+        
+        poly = new ArrayList<>();
+        poly.add(new BluePolymorph(50, 50));
+        poly.add(new RedPolymorph(100, 100));
+        poly.add(new MovingMorph(300, 100));
+        poly.add(new MouseMorph(0, 0));
+        poly.add(new ClickMorph(400, 400));
+        
+        window.addMouseMotionListener((MouseMotionListener) poly.get(3));
+        window.addMouseListener((MouseListener) poly.get(4));
 
-        bluePoly = new BluePolymorph(50, 50);
+        //bluePoly = new BluePolymorph(50, 50);
+        //redPoly = new RedPolymorph(100, 100);
+        //movingPoly = new MovingMorph(300, 100);
 
         timer = new Timer(1000 / 30, this);
         timer.start();
@@ -86,13 +105,23 @@ public class PolymorphWindow extends JPanel implements ActionListener {
         g.fillRect(0, 0, 500, 500);
 
         // draw polymorph
-        bluePoly.draw(g);
+        //movingPoly.update();
+        for(Polymorph p : poly) {
+        	p.update();
+        }
+        for(Polymorph p : poly) {
+        	p.draw(g);
+        }
+        
+        //bluePoly.draw(g);
+        //redPoly.draw(g);
+        //movingPoly.draw(g);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         repaint();
-        bluePoly.update();
+        //bluePoly.update();
 
     }
 }

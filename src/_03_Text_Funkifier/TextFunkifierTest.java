@@ -41,9 +41,11 @@ public class TextFunkifierTest {
      * 5. Create a matching JUnit test below to test for your custom String and
      * make it pass.
      */
+    
 
     @Test
     public void testCustomString() {
-
+		everyThirdCapsString etcs = new everyThirdCapsString("This is another test");
+		assertEquals("tHIs Is AnOThER TEsT", etcs.funkifyText());
     }
 }
